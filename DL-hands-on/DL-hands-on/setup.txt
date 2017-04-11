@@ -1,0 +1,71 @@
+SETUP INSTRUCTION FOR DEEP LEARNING
+-----------------------------------
+
+For DEEP LEARNING 1-DAY, NO SETUP IS NECESSARY PRIOR TO CLASS
+
+In the 1-day overview, time is quite limited, so the instructor will provide static html docs with all course content, and will perform demos, but participants may not wish to do any coding, so no setup is necessary.
+ 
+Attendees for the 1-day overview may complete the setup described below for the 2-day hands-on course if they wish, so that they can experiment with the code after class, but it is not at all necessary.
+
+-----------------------------------
+
+For DEEP LEARNING 2-DAY HANDS-ON COURSE:
+
+These instructions are for creating a Linux VM which will make setup easy and keep all of our work separate from your regular laptop environment.
+
+(You are welcome to try to install directly onto your laptop, and that will probably be pretty easy on MacOS, but since every person's laptop is a little different, we will focus on supporting the VM-based install.)
+
+Step 1: Virtual Machine Setup
+-----------------------------
+
+Using VMWare Player, VirtualBox, or a VM environment of your choice, install Ubuntu 16.04.2 64-bit
+
+Give yourself 25 GB or so of total hard drive space. If you have enough resources, give the VM 4 cores and 6 GB of RAM. All of the other defaults should work fine.
+
+Step 2: Setup Anaconda
+----------------------
+
+Install Anaconda in the new Ubuntu guest operating system by running the following commands in your Ubuntu terminal:
+
+> wget https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh
+
+> bash Anaconda3-4.3.1-Linux-x86_64.sh
+
+(agree to the license, choose the defaults, choose 'yes' prepend to Anaconda to your path)
+
+Restart your terminal
+
+Step 3: Install Python Packages
+-------------------------------
+
+Run the following commands to create a deep learning environment called "dl" and install packages:
+
+> conda create --name dl
+> source activate dl
+
+> conda install pydot-ng graphviz
+
+> pip install pydot tensorflow keras sklearn jupyter
+> pip install pandas matplotlib tqdm scipy seaborn h5py
+
+Now close your terminal and open a new one.
+
+Run:
+
+> source activate dl
+> jupyter notebook
+
+You should see your browser start up and show a Jupyter notebook page with a little Jupyter logo in the upper right corner.
+
+Step 4: Fix Plotting
+--------------------
+
+Open a terminal and launch an editor to fix a file as follows:
+
+> gedit /home/ubuntu/anaconda3/envs/dl/lib/python3.4/site-packages/matplotlib/mpl-data/matplotlibrc
+
+Move down to line 38 where it starts "backend" and change it to read:
+
+backend      : TkAgg
+
+Save the file and quit.
